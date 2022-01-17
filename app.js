@@ -35,18 +35,22 @@ app.get("/articles", (req, res) => {
     } else {
       res.send(err);
     }
+
   });
 });
 
 app.post("/articles", (req, res) => {
-  console.log();
-  console.log();
-
   const newArticle = new Article({
     title: req.body.title,
     content: req.body.content
   });
-  newArticle.save();
+  newArticle.save( (err){
+    if (!err){
+      res.send("Successfully added a new article.")
+    } else {
+      res.send(err);
+    }
+  });
 });
 
 
